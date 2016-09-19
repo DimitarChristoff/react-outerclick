@@ -5,7 +5,7 @@ const listeners   = {};
 let listener;
 
 function listen(id, component){
-  if (Object.keys(listeners) === 0){
+  if (Object.keys(listeners).length === 0){
     listener = function(e){
       const node = ReactDOM.findDOMNode(this);
       if (!node || !node.contains(e.target)){
@@ -28,7 +28,7 @@ function stop(id, listenerIndex){
     if (!listeners[id].length){
       delete listeners[id];
     }
-    if (!Object.keys(listeners)){
+    if (!Object.keys(listeners).length){
       window.document.removeEventListener('click', listener);
     }
   }
