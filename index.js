@@ -1,35 +1,55 @@
-import React      from 'react';
-import ReactDOM   from 'react-dom';
+import React          from 'react';
+import {findDOMNode}  from 'react-dom';
 
-const listeners   = {};
-let listener;
+const __listeners     = {};
+  let __listener      = () => null;
 
-function listen(id, component){
-  if (Object.keys(listeners).length === 0){
-    listener = function(e){
-      const node = ReactDOM.findDOMNode(component);
-      if (!node || (node && !node.contains(e.target))){
-        id in listeners && listeners[id].map(component => component.handleOuterClick(e))
+/**
+ * Adds a click listener to component's ownerDocument, max one per page
+ * @param {String} id of component
+ * @param {React.Component} component
+ * @returns {number || *}
+ * @private
+ */
+function __listen(id, component){
+  const node = findDOMNode(component);
+  if (!node)
+    return;
+
+  if (Object.keys(__listeners).length === 0){
+    __listener = e => {
+      const node = findDOMNode(component);
+      if (!node || node && !node.contains(e.target)){
+        id in __listeners && __listeners[id].map(component => component.handleOuterClick(e))
       }
     };
-    window.document.addEventListener('click', listener, true);
+    node.ownerDocument.addEventListener('click', __listener, true);
   }
-  if (!(id in listeners)){
-    listeners[id] = [component];
+  if (!(id in __listeners)){
+    __listeners[id] = [component];
   }
   else {
-    return listeners[id].push(component);
+    return __listeners[id].push(component);
   }
 }
 
-function stop(id, listenerIndex){
-  if (id in listeners){
-    listeners[id].splice(listenerIndex, 1);
-    if (!listeners[id].length){
-      delete listeners[id];
+/**
+ * Stops listening for a outer click for a particular delegate or cleans up all listeners
+ * @param {String} id of component
+ * @param {Number} listenerIndex handle in case more than 1
+ * @param {React.Component} component
+ * @private
+ */
+function __stop(id, listenerIndex, component){
+  if (id in __listeners){
+    __listeners[id].splice(listenerIndex, 1);
+    if (!__listeners[id].length){
+      delete __listeners[id];
     }
-    if (!Object.keys(listeners).length){
-      window.document.removeEventListener('click', listener);
+    if (!Object.keys(__listeners).length){
+      const node = findDOMNode(component);
+      node && node.ownerDocument.removeEventListener('click', __listener);
+      __listener = ()=>null;
     }
   }
 }
@@ -46,16 +66,16 @@ function outerClick(ComponentConstructor){
       displayName = `outerClickWrapper-${ComponentConstructor.displayName || ComponentConstructor.name}`;
 
       componentDidMount(){
-        this._sub = listen(this.displayName, this.__wrappedComponent);
+        this._sub = __listen(this.displayName, this.__wrappedComponent);
       }
 
       componentWillUnmount(){
-        stop(this.displayName, this._sub);
+        __stop(this.displayName, this._sub, this.__wrappedComponent);
         delete this._sub;
       }
 
       render(){
-        return <ComponentConstructor {...this.props} ref={c => this.__wrappedComponent = c} />
+        return <ComponentConstructor {...this.props} ref={componentRef => this.__wrappedComponent = componentRef} />
       }
     } :
   ComponentConstructor;
