@@ -7,14 +7,14 @@ let listener;
 function listen(id, component){
   if (Object.keys(listeners).length === 0){
     listener = function(e){
-      const node = ReactDOM.findDOMNode(this);
-      if (!node || !node.contains(e.target)){
+      const node = ReactDOM.findDOMNode(component);
+      if (!node || (node && !node.contains(e.target))){
         id in listeners && listeners[id].map(component => component.handleOuterClick(e))
       }
     };
     window.document.addEventListener('click', listener, true);
   }
-  if (!id in listeners){
+  if (!(id in listeners)){
     listeners[id] = [component];
   }
   else {
@@ -34,27 +34,31 @@ function stop(id, listenerIndex){
   }
 }
 
-function outerClick(component){
+/**
+ * Returns a new Class or the old class if the ComponentConstructor passed does not implement handleOuterClick
+ * @param {React.Component} ComponentConstructor
+ * @returns {OuterclickWrap || React.Component}
+ */
+function outerClick(ComponentConstructor){
+  return ComponentConstructor.prototype.handleOuterClick ?
+    class OuterClickWrap extends React.Component {
 
-  return component.prototype.handleOuterClick ?
-    class extends React.Component {
-
-      displayName = `outerClickWrapper-${component.displayName || component.name}`;
+      displayName = `outerClickWrapper-${ComponentConstructor.displayName || ComponentConstructor.name}`;
 
       componentDidMount(){
-        this._sub = listen(new Symbol(this.displayName), this.__wrappedComponent);
+        this._sub = listen(this.displayName, this.__wrappedComponent);
       }
 
       componentWillUnmount(){
-        stop(new Symbol(this.displayName), this._sub);
+        stop(this.displayName, this._sub);
         delete this._sub;
       }
 
       render(){
-        return <component {...this.props} ref={c => this.__wrappedComponent = c} />
+        return <ComponentConstructor {...this.props} ref={c => this.__wrappedComponent = c} />
       }
     } :
-  component;
+  ComponentConstructor;
 }
 
 export default outerClick;
