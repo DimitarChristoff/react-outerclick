@@ -34,7 +34,7 @@ class Foo extends React.Component {
 export default Foo;
 ```
 
-Alternatively, without `stage-0`, this looks like so:
+Alternatively, without `stage-0` and `babel-plugin-transform-decorators-legacy`, this looks like so:
 
 ```js
 import React from 'react';
