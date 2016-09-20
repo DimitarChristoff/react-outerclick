@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "Call event handler when a click outside the component takes place",
   "main": "dist/index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zambezi/react-outerclick.git"
@@ -21,18 +18,20 @@
   },
   "homepage": "https://github.com/zambezi/react-outerclick#readme",
   "scripts": {
-    "start": "cd example && webpack-dev-server --progress",
-    "build": "webpack",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --optimize-occurence-order --optimize-dedupe --hot --inline --debug --compress --watch-poll",
+    "build": "cross-env NODE_ENV=production webpack",
     "prepublish": "npm run build"
   },
   "devDependencies": {
     "babel": "^6.1.18",
     "babel-core": "^6.14.0",
     "babel-loader": "^6.2.4",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-preset-es2015": "^6.14.0",
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-0": "^6.5.0",
     "babel-runtime": "^6.6.1",
+    "cross-env": "^1.0.8",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
     "webpack": "^1.13.1",
