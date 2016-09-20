@@ -8,14 +8,23 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DimitarChristoff/react-outerclick.git"
+    "url": "git+https://github.com/zambezi/react-outerclick.git"
   },
-  "author": "",
+  "keywords": [
+    "react",
+    "outerclick"
+  ],
+  "author": "zambezi",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/DimitarChristoff/react-outerclick/issues"
+    "url": "https://github.com/zambezi/react-outerclick/issues"
   },
-  "homepage": "https://github.com/DimitarChristoff/react-outerclick#readme",
+  "homepage": "https://github.com/zambezi/react-outerclick#readme",
+  "scripts": {
+    "start": "cd example && webpack-dev-server --progress",
+    "build": "webpack",
+    "prepublish": "npm run build"
+  },
   "devDependencies": {
     "babel": "^6.1.18",
     "babel-core": "^6.14.0",
