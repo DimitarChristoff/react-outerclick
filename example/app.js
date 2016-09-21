@@ -10,12 +10,12 @@ class App extends React.Component {
   handleClose(){
     console.log('closing')
     this.setState({
-      open: false
+      open: !this.state.open
     });
   }
 
   render(){
-    const openClass = 'modal' + (this.state.open ? ' is-active' : '');
+    const openClass = 'modal' + (!this.state.open ? ' is-active' : '');
 
     return <div className={openClass}>
       <div className="modal-background"></div>

@@ -35,7 +35,7 @@ class Container extends React.Component {
       <footer className="card-footer">
         <a className="card-footer-item">Save</a>
         <a className="card-footer-item">Edit</a>
-        <a className="card-footer-item">Delete</a>
+        <a className="card-footer-item" onClick={::this.handleOuterClick}>Cancel</a>
       </footer>
     </div>
   }

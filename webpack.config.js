@@ -37,7 +37,7 @@ const config = {
       loader: 'babel',
       query: {
         plugins: ['transform-decorators-legacy'],
-        presets: ['react', 'es2015', 'stage-0']
+        presets: ['react-hmre', 'react', 'es2015', 'stage-0']
       }
     }]
   },
@@ -64,7 +64,7 @@ const config = {
   }
 };
 
-
+// todo: solve by using dev: { production, development } in config.
 if (process.env.NODE_ENV === 'development'){
   config.entry.examples = ['./example/index.js'];
   // config.plugins.push(new webpack.optimize.CommonsChunkPlugin('examples', 'examples.js'));

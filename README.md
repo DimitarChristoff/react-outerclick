@@ -70,3 +70,8 @@ Because.
 
  - need to be able to do this with a low footprint - so a single document event handler for all elements that need it.
  - gets `element.ownerDocument` correctly so can work in popups/tearoffs, unlike other implementations 
+
+
+## Limitations
+
+Hot Module Reloading (react-hmre, react-hot-loader etc) any component that has an outerClick handler will cause the outer click functionality to fail as it's not going to find the old component instance and there is no lifecycle method that is available to refresh the event subscriptions.
