@@ -1,5 +1,5 @@
 {
-  "name": "react-outerclick",
+  "name": "@zambezi/react-outerclick",
   "version": "1.0.0",
   "description": "Call event handler when a click outside the component takes place",
   "main": "dist/index.js",
