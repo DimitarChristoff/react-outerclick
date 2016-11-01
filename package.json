@@ -1,11 +1,11 @@
 {
-  "name": "@zambezi/react-outerclick",
+  "name": "react-outerclick",
   "version": "1.0.0",
   "description": "Call event handler when a click outside the component takes place",
   "main": "dist/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zambezi/react-outerclick.git"
+    "url": "git+https://github.com/DimitarChristoff/react-outerclick.git"
   },
   "keywords": [
     "react",
@@ -14,11 +14,11 @@
   "author": "zambezi",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/zambezi/react-outerclick/issues"
+    "url": "https://github.com/DimitarChristoff/react-outerclick/issues"
   },
-  "homepage": "https://github.com/zambezi/react-outerclick#readme",
+  "homepage": "https://github.com/DimitarChristoff/react-outerclick#readme",
   "scripts": {
-    "start": "cross-env NODE_ENV=development webpack-dev-server --optimize-occurence-order --optimize-dedupe --hot --inline --debug --compress --watch",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --optimize-occurence-order --optimize-dedupe --hot --inline --debug --compress --watch-poll",
     "build": "cross-env NODE_ENV=production webpack",
     "prepublish": "npm run build"
   },
