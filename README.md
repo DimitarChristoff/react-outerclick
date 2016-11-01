@@ -7,7 +7,7 @@ Get a callback when a click happens outside of your component. If your React cla
 ## Installation
 
 ```bash
-npm i @zambezi/react-outerclick
+npm i react-outerclick
 ```
 
 ## Usage
