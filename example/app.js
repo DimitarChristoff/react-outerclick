@@ -55,7 +55,7 @@ class App extends React.Component {
   }
 
   render(){
-    const openClass = 'modal' + (!this.state.open ? ' is-active' : '');
+    const openClass = 'modal' + (this.state.open ? ' is-active' : '');
 
     return <div className={openClass}>
       <div className="modal-background"></div>

@@ -1,0 +1,5 @@
+exports[`Outerclick tests > renders wrapped components correctly 1`] = `
+<div>
+  Hi
+</div>
+`;
