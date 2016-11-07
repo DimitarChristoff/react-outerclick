@@ -10582,15 +10582,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	};
 	
-	var _CDevWorkReactOuterclickNode_modulesReactTransformHmrLibIndexJs2 = (0, _index6.default)({
-	  filename: 'C:/dev/work/react-outerclick/index.js',
+	var _UsersCodaProjectsReactOuterclickNode_modulesReactTransformHmrLibIndexJs2 = (0, _index6.default)({
+	  filename: '/Users/coda/projects/react-outerclick/index.js',
 	  components: _components,
 	  locals: [module],
 	  imports: [_react3.default]
 	});
 	
-	var _CDevWorkReactOuterclickNode_modulesReactTransformCatchErrorsLibIndexJs2 = (0, _index4.default)({
-	  filename: 'C:/dev/work/react-outerclick/index.js',
+	var _UsersCodaProjectsReactOuterclickNode_modulesReactTransformCatchErrorsLibIndexJs2 = (0, _index4.default)({
+	  filename: '/Users/coda/projects/react-outerclick/index.js',
 	  components: _components,
 	  locals: [],
 	  imports: [_react3.default, _index2.default]
@@ -10598,7 +10598,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	function _wrapComponent(id) {
 	  return function (Component) {
-	    return _CDevWorkReactOuterclickNode_modulesReactTransformHmrLibIndexJs2(_CDevWorkReactOuterclickNode_modulesReactTransformCatchErrorsLibIndexJs2(Component, id), id);
+	    return _UsersCodaProjectsReactOuterclickNode_modulesReactTransformHmrLibIndexJs2(_UsersCodaProjectsReactOuterclickNode_modulesReactTransformCatchErrorsLibIndexJs2(Component, id), id);
 	  };
 	}
 	
