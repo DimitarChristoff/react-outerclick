@@ -2,7 +2,7 @@
   "name": "react-outerclick",
   "version": "1.0.1",
   "description": "Call event handler when a click outside the component takes place",
-  "main": "dist/index.js",
+  "main": "dist/react-outerclick.min.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DimitarChristoff/react-outerclick.git"
@@ -19,7 +19,7 @@
   "homepage": "https://github.com/DimitarChristoff/react-outerclick#readme",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server --optimize-occurence-order --optimize-dedupe --hot --inline --debug --compress --watch-poll",
-    "build": "cross-env NODE_ENV=production webpack",
+    "build": "rimraf dist && cross-env NODE_ENV=production webpack",
     "test": "cross-env NODE_ENV=test jest tests",
     "test:watch": "npm test -- --watch",
     "test:update-snapshot": "npm test -- -u",

@@ -1,79 +1,10 @@
-const path        = require('path');
-const webpack     = require('webpack');
-const __OUTPUT__  = 'dist';
-
-
-const config = {
-
-  context: __dirname,
-
-  entry: {
-    index: [
-      './index.js'
-    ]
-  },
-
-  output: {
-    path: path.join(__dirname, __OUTPUT__),
-    publicPath: '/',
-    filename: '[name].js',
-    library: 'react-outerclick',
-    libraryTarget: 'umd'
-  },
-
-  externals: {
-    react: {
-      root: 'React',
-      commonjs2: 'react',
-      commonjs: 'react',
-      amd: 'react'
-    }
-  },
-
-  module: {
-    loaders: [{
-      test: /\.(js|jsx)$/,
-      exclude: /(node_modules)/,
-      loader: 'babel',
-      query: {
-        plugins: ['transform-decorators-legacy'],
-        presets: ['react-hmre', 'react', 'es2015', 'stage-0']
-      }
-    }]
-  },
-
-  devServer: {
-    contentBase: path.join(__dirname, 'example'),
-    historyApiFallback: true,
-    host: '0.0.0.0',
-    port: 3000,
-    hot: true,
-    staticOptions: {
-
-    },
-  },
-
-  plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.DedupePlugin()
-  ],
-
-  devtool: 'source-map',
-
-  resolve: {
-    extensions: ['', '.js', '.jsx']
-  }
-};
-
-// todo: solve by using dev: { production, development } in config.
-if (process.env.NODE_ENV === 'development'){
-  config.entry.examples = ['./example/index.js'];
-  // config.plugins.push(new webpack.optimize.CommonsChunkPlugin('examples', 'examples.js'));
-  delete config.entry.index;
-  delete config.externals;
+switch (process.env.NODE_ENV){
+  case 'prod':
+  case 'production':
+    module.exports = require('./config/webpack.prod');
+    break;
+  case 'dev':
+  case 'development':
+  default:
+    module.exports = require('./config/webpack.dev');
 }
-else {
-
-}
-
-module.exports = config;
