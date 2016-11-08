@@ -20,12 +20,27 @@ module.exports = {
     ]
   },
 
-  externals: ['react', 'react-dom'],
-
   output: {
     path: __OUTPUT__,
     publicPath: './',
-    filename: `${__COMPONENT_NAME__}.min.js`
+    filename: `${__COMPONENT_NAME__}.min.js`,
+    library: 'react-outerclick',
+    libraryTarget: 'umd'
+  },
+
+  externals: {
+    react: {
+      root: 'React',
+      commonjs2: 'react',
+      commonjs: 'react',
+      amd: 'react'
+    },
+    'react-dom': {
+      root: 'ReactDOM',
+      commonjs: 'react-dom',
+      commonjs2: 'react-dom',
+      amd: 'react-dom'
+    }
   },
 
   module: {
