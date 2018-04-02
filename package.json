@@ -46,5 +46,9 @@
   },
   "jest": {
     "collectCoverage": true
+  },
+  "peerDependencies": {
+    "react": ">=15.0.0",
+    "react-dom": ">=15.0.0"
   }
 }
