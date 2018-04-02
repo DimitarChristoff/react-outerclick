@@ -1,6 +1,6 @@
 {
   "name": "react-outerclick",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Call event handler when a click outside the component takes place",
   "main": "dist/react-outerclick.min.js",
   "repository": {
