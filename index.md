@@ -2,6 +2,8 @@
 
 HOC wrapper with frugal document event strategy
 
+> NB: this will work with React Classes, not with stateless components
+
 Get a callback when a click happens outside of your component. If your React class implements `handleOuterClick`, it will get called when a click outside of the root node for your element takes place.
 
 ## Installation
@@ -12,17 +14,17 @@ npm i react-outerclick
 
 ## Usage
 
-As a HOC, you can use the ES7 decorator style:
+As a HOC, you can use the experimental decorator style:
 
 ```js
 import React from 'react';
 import outerClick from 'react-outerclick';
- 
+
 @outerClick
 class Foo extends React.Component {
 
   state = {
-    opened: true  
+    opened: true
   };
 
   handleOuterClick(event){
@@ -44,13 +46,13 @@ Alternatively, without `stage-0` and `babel-plugin-transform-decorators-legacy`,
 ```js
 import React from 'react';
 import outerClick from 'react-outerclick';
- 
+
 class Foo extends React.Component {
 
-  constructor(props){ 
+  constructor(props){
     super(props);
     this.state = {
-        opened: true  
+        opened: true
     };
   }
 
@@ -71,10 +73,10 @@ export default outerClick(Foo);
 
 ## Why?
 
-Because: 
+Because:
 
  - need to be able to do this with a low footprint - so a single document event handler for all elements that need it.
- - gets `element.ownerDocument` correctly so can work in popups/tearoffs, unlike other implementations 
+ - gets `element.ownerDocument` correctly so can work in popups/tearoffs, unlike other implementations
 
 ## Limitations
 
