@@ -1,0 +1,50 @@
+{
+  "name": "react-outerclick",
+  "version": "1.0.3",
+  "description": "Call event handler when a click outside the component takes place",
+  "main": "dist/react-outerclick.min.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DimitarChristoff/react-outerclick.git"
+  },
+  "keywords": [
+    "react",
+    "outerclick"
+  ],
+  "author": "Dimitar Christoff",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DimitarChristoff/react-outerclick/issues"
+  },
+  "homepage": "https://github.com/DimitarChristoff/react-outerclick#readme",
+  "scripts": {
+    "start": "webpack-dev-server --config webpack.config.dev.js --hot --mode development",
+    "build": "rimraf dist && webpack --config webpack.config.prod.js --mode production",
+    "test": "jest tests",
+    "test:watch": "npm test -- --watch",
+    "test:update-snapshot": "npm test -- -u"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-jest": "^22.4.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-runtime": "^6.18.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "html-webpack-plugin": "^3.1.0",
+    "jest": "^22.4.3",
+    "prop-types": "^15.6.1",
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0",
+    "react-test-renderer": "^16.3.0",
+    "rimraf": "^2.6.2",
+    "webpack": "^4.4.1",
+    "webpack-cli": "^2.0.13",
+    "webpack-dev-server": "^3.1.1"
+  },
+  "jest": {
+    "collectCoverage": true
+  }
+}

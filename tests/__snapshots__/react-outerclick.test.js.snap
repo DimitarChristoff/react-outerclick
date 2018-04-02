@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Outerclick tests > renders wrapped components correctly 1`] = `
+<div>
+  I  care about outerclick
+</div>
+`;
+
+exports[`Outerclick tests > renders wrapped components correctly 2`] = `"outerClickWrapper-C"`;
+
+exports[`Outerclick tests > renders wrapped components that dont have handleClick correctly 1`] = `
+<div>
+  Hi
+</div>
+`;
+
+exports[`Outerclick tests > renders wrapped components that dont have handleClick correctly 2`] = `undefined`;
