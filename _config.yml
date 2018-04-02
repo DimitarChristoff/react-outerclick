@@ -1,0 +1,8 @@
+title: React-outerclick
+description: HOC wrapper for react components to handle outside clicks with a frugal document event strategy
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-hacker
+
+gems:
+  - jekyll-mentions
