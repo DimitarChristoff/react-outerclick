@@ -33,7 +33,7 @@ function __listen(wrappedComponent){
   if (__listeners.length === 0){
     doc(node).addEventListener('click', notifyComponents, true);
   }
-  return __listeners.push(wrappedComponent)
+  return __listeners.push(wrappedComponent);
 }
 
 /**
@@ -43,7 +43,7 @@ function __listen(wrappedComponent){
  * @private
  */
 function __stop(listenerIndex, wrappedComponent){
-  __listeners.splice(listenerIndex, 1)
+  __listeners.splice(listenerIndex, 1);
   if (!__listeners.length){
     const node = findDOMNode(wrappedComponent);
     node && doc(node).removeEventListener('click', notifyComponents);
