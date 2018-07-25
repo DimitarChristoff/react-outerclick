@@ -15,6 +15,10 @@ function notifyComponents(e){
   });
 }
 
+function doc(node){
+  return node.ownerDocument || window.document;
+}
+
 /**
  * Adds a click listener to component's ownerDocument, max one per page
  * @param {React.Component} wrappedComponent
@@ -22,12 +26,12 @@ function notifyComponents(e){
  * @private
  */
 function __listen(wrappedComponent){
-  const node = findDOMNode(wrappedComponent);
+  let node = findDOMNode(wrappedComponent);
   if (!node)
     return;
 
   if (__listeners.length === 0){
-    node.ownerDocument.addEventListener('click', notifyComponents, true);
+    doc(node).addEventListener('click', notifyComponents, true);
   }
   return __listeners.push(wrappedComponent)
 }
@@ -42,7 +46,7 @@ function __stop(listenerIndex, wrappedComponent){
   __listeners.splice(listenerIndex, 1)
   if (!__listeners.length){
     const node = findDOMNode(wrappedComponent);
-    node && node.ownerDocument.removeEventListener('click', notifyComponents);
+    node && doc(node).removeEventListener('click', notifyComponents);
   }
 }
 

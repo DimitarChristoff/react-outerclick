@@ -20,7 +20,7 @@
   "scripts": {
     "start": "webpack-dev-server --config webpack.config.dev.js --hot --mode development",
     "build": "rimraf dist && webpack --config webpack.config.prod.js --mode production",
-    "test": "jest tests",
+    "test": "jest --env=jsdom",
     "test:watch": "npm test -- --watch",
     "test:update-snapshot": "npm test -- -u"
   },
@@ -53,6 +53,9 @@
     ],
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
+    ],
+    "setupFiles": [
+      "<rootDir>/tests/index.js"
     ],
     "testMatch": [
       "<rootDir>/tests/?(*.)(test).{js,jsx}"
