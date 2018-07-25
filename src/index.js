@@ -13,7 +13,6 @@ const __listeners     = {};
  */
 function __listen(id, component){
   const node = findDOMNode(component);
-  console.log(node)
   if (!node)
     return;
 
@@ -64,19 +63,21 @@ function outerClick(ComponentConstructor){
   return ComponentConstructor.prototype.handleOuterClick ?
     class OuterClickWrap extends React.Component {
 
+      __wrappedComponent = React.createRef()
+
       displayName = `outerClickWrapper-${ComponentConstructor.displayName || ComponentConstructor.name}`;
 
       componentDidMount(){
-        this._sub = __listen(this.displayName, this.__wrappedComponent);
+        this._sub = __listen(this.displayName, this.__wrappedComponent.current);
       }
 
       componentWillUnmount(){
-        __stop(this.displayName, this._sub, this.__wrappedComponent);
+        __stop(this.displayName, this._sub, this.__wrappedComponent.current);
         delete this._sub;
       }
 
       render(){
-        return <ComponentConstructor {...this.props} ref={componentRef => this.__wrappedComponent = componentRef} />
+        return <ComponentConstructor {...this.props} ref={this.__wrappedComponent} />
       }
     } :
   ComponentConstructor;
