@@ -2,7 +2,9 @@ const path = require('path');
 
 const entry = './src/index.js'
 const output = {
-  filename: 'react-outerclick.min.js'
+  filename: 'react-outerclick.min.js',
+  library: 'react-outerclick',
+  libraryTarget: 'commonjs2'
 }
 
 module.exports = {
