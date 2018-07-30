@@ -10,7 +10,7 @@ function notifyComponents(e){
       return;
     }
     if (!node.contains(e.target)){
-      component.handleOuterClick(e)
+      component.handleOuterClick(e);
     }
   });
 }
@@ -56,21 +56,23 @@ function __stop(listenerIndex, wrappedComponent){
  * @returns {OuterClickWrap || React.Component}
  */
 function outerClick(ComponentConstructor){
-  let __id = 0;
-
   return ComponentConstructor.prototype.handleOuterClick ?
     class OuterClickWrap extends React.Component {
 
       __wrappedComponent = React.createRef()
 
-      displayName = `outerClickWrapper-${ComponentConstructor.displayName || ComponentConstructor.name}-${__id++}`;
+      displayName = `outerClickWrapper-${ComponentConstructor.displayName || ComponentConstructor.name}`;
+
+      componentDidCatch(error){
+        // hot reload can break this. we want to fail silently.
+      }
 
       componentDidMount(){
         this._sub = __listen(this.__wrappedComponent.current);
       }
 
       componentWillUnmount(){
-        __stop(this._sub);
+        __stop(this._sub, this.__wrappedComponent.current);
         delete this._sub;
       }
 
