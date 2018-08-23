@@ -4,15 +4,23 @@ import {findDOMNode} from 'react-dom';
 const __listeners = [];
 
 function notifyComponents(e){
-  __listeners.map(component => {
-    const node = findDOMNode(component);
-    if (!node){
-      return;
+  const gone = [];
+  __listeners.map((component, index) => {
+    try {
+      const node = findDOMNode(component);
+      if (!node){
+        return;
+      }
+      if (!node.contains(e.target)){
+        component.handleOuterClick(e);
+      }
     }
-    if (!node.contains(e.target)){
-      component.handleOuterClick(e);
+    catch(e){
+      // unexpectedly removed from DOM, we need to clean up
+      gone.push([index, component])
     }
   });
+  gone.length && gone.forEach(toRemove => __stop.apply(null, toRemove))
 }
 
 function doc(node){
@@ -45,8 +53,16 @@ function __listen(wrappedComponent){
 function __stop(listenerIndex, wrappedComponent){
   __listeners.splice(listenerIndex, 1);
   if (!__listeners.length){
-    const node = findDOMNode(wrappedComponent);
-    node && doc(node).removeEventListener('click', notifyComponents);
+    let node;
+    try {
+      node = findDOMNode(wrappedComponent);
+    }
+    catch(e){
+      node = {}
+    }
+    finally {
+      doc(node).removeEventListener('click', notifyComponents);
+    }
   }
 }
 

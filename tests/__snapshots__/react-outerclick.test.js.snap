@@ -6,7 +6,7 @@ exports[`Outerclick tests > renders wrapped components correctly 1`] = `
 </div>
 `;
 
-exports[`Outerclick tests > renders wrapped components correctly 2`] = `"outerClickWrapper-C-0"`;
+exports[`Outerclick tests > renders wrapped components correctly 2`] = `"outerClickWrapper-C"`;
 
 exports[`Outerclick tests > renders wrapped components that dont have handleClick correctly 1`] = `
 <div>

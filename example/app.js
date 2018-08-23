@@ -48,7 +48,7 @@ class App extends React.Component {
   };
 
   handleClose = () => {
-    console.log('closing')
+    console.log('closing');
     this.setState({
       open: !this.state.open
     });

@@ -10,6 +10,7 @@ const output = {
 module.exports = {
   entry,
   output,
+  devtool: "source-map",
   module: {
     rules: [
       {
