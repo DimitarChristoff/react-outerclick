@@ -58,7 +58,7 @@ function __stop(listenerIndex, wrappedComponent){
       node = findDOMNode(wrappedComponent);
     }
     catch(e){
-      node = {}
+      node = {};
     }
     finally {
       doc(node).removeEventListener('click', notifyComponents);
@@ -75,9 +75,9 @@ function outerClick(ComponentConstructor){
   return ComponentConstructor.prototype.handleOuterClick ?
     class OuterClickWrap extends React.Component {
 
-      __wrappedComponent = React.createRef()
+      __wrappedComponent = React.createRef();
 
-      displayName = `outerClickWrapper-${ComponentConstructor.displayName || ComponentConstructor.name}`;
+      static displayName = `outerClickWrapper-${ComponentConstructor.displayName || ComponentConstructor.name}`;
 
       componentDidCatch(error){
         // hot reload can break this. we want to fail silently.
